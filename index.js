@@ -145,6 +145,8 @@ function parseNewOptions(base, extended){
 }
 
 function query(requestProtocol, options, cb){
+  //console.log('request options:::::::');
+  //console.log(options);
   if (!options.hostname) return cb('hostname is required for query');
   var chunks = [];
   var req = requestProtocol(options, function(res) {
