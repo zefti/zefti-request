@@ -1,6 +1,6 @@
 var http = require('http');
 var https = require('https');
-var utils = require('zefti-utils')({});
+var utils = require('zefti-utils');
 
 function Request(options){
   if (!options) options = {};
