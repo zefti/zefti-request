@@ -63,6 +63,7 @@ var server = app.listen(6000);
 
 
 
+
 describe('RETRIES', function(){
   describe('GET', function(){
     var retries = 10;
@@ -479,11 +480,11 @@ describe('DEL', function() {
       });
     });
 
-    it('should return back sent value to mock get endpoint', function (done) {
+    it('should not return back sent value to mock get endpoint (will not send body on delete)', function (done) {
       localhostMockDel.del({test:'testvalue'}, function (err, res) {
         if (err) throw new Error(err);
         var parsedBody = JSON.parse(res.body);
-        assert.equal(parsedBody.test, 'testvalue');
+        assert(!parsedBody.test);
         assert.equal(res.statusCode, 200);
         done();
       });
@@ -503,7 +504,7 @@ describe('DEL', function() {
       });
     });
 
-    it('should return expected value', function (done) {
+    it('should return a 200', function (done) {
       request.del({}, {hostname:'localhost', path:'/mockdel', port:6000}, function (err, res) {
         if (err) throw new Error(err);
         assert(res);
@@ -513,11 +514,11 @@ describe('DEL', function() {
       });
     });
 
-    it('should return sent value to mock get endpoint', function (done) {
+    it('should not return sent value (del does not send body)', function (done) {
       request.del({test:'testvalue'}, {hostname:'localhost', path:'/mockdel', port:6000}, function (err, res) {
         if (err) throw new Error(err);
         var parsedBody = JSON.parse(res.body);
-        assert.equal(parsedBody.test, 'testvalue');
+        assert(!parsedBody.test);
         assert.equal(res.statusCode, 200);
         done();
       });
