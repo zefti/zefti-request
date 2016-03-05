@@ -71,18 +71,18 @@ describe('RETRIES', function(){
     var localErr0Retries = new Request({hostname: 'localhost', port: 6000, path: '/errget500'});
     it('should err 500 with 10 retries', function (done) {
       localErr10Retries.get(function (err, res) {
-        assert(err);
-        assert.equal(typeof payload, 'undefined');
-        assert.equal(err.executedRetries, 10)
+        assert(!err);
+        assert.equal(res.statusCode, 500);
+        assert.equal(res.retries, 10);
         done();
       });
     });
 
     it('should err 500 with 0 retries', function (done) {
       localErr0Retries.get(function (err, res) {
-        assert(err);
-        assert.equal(typeof payload, 'undefined');
-        assert.equal(err.executedRetries, 00)
+        assert(!err);
+        assert.equal(res.statusCode, 500);
+        assert.equal(res.retries, 0);
         done();
       });
     });
@@ -94,18 +94,18 @@ describe('RETRIES', function(){
     var localErr0Retries = new Request({hostname: 'localhost', port: 6000, path: '/errpost500'});
     it('should err 500 with 10 retries', function (done) {
       localErr10Retries.post(function (err, res) {
-        assert(err);
-        assert.equal(typeof payload, 'undefined');
-        assert.equal(err.executedRetries, 10)
+        assert(!err);
+        assert.equal(res.statusCode, 500);
+        assert.equal(res.retries, 10);
         done();
       });
     });
 
     it('should err 500 with 0 retries', function (done) {
       localErr0Retries.post(function (err, res) {
-        assert(err);
-        assert.equal(typeof payload, 'undefined');
-        assert.equal(err.executedRetries, 00)
+        assert(!err);
+        assert.equal(res.statusCode, 500);
+        assert.equal(res.retries, 0);
         done();
       });
     });
@@ -114,21 +114,21 @@ describe('RETRIES', function(){
   describe('PUT', function(){
     var retries = 10;
     var localErr10Retries = new Request({hostname: 'localhost', port: 6000, path: '/errput500', retries: retries});
-    var localErr0Retries = new Request({hostname: 'localhost', port: 6000, path: '/errput500x'});
+    var localErr0Retries = new Request({hostname: 'localhost', port: 6000, path: '/errput500'});
     it('should err 500 with 10 retries', function (done) {
       localErr10Retries.put(function (err, res) {
-        assert(err);
-        assert.equal(typeof payload, 'undefined');
-        assert.equal(err.executedRetries, 10)
+        assert(!err);
+        assert.equal(res.statusCode, 500);
+        assert.equal(res.retries, 10);
         done();
       });
     });
 
     it('should err 500 with 0 retries', function (done) {
       localErr0Retries.put(function (err, res) {
-        assert(err);
-        assert.equal(typeof payload, 'undefined');
-        assert.equal(err.executedRetries, 00)
+        assert(!err);
+        assert.equal(res.statusCode, 500);
+        assert.equal(res.retries, 0);
         done();
       });
     });
@@ -140,18 +140,18 @@ describe('RETRIES', function(){
     var localErr0Retries = new Request({hostname: 'localhost', port: 6000, path: '/errdel500'});
     it('should err 500 with 10 retries', function (done) {
       localErr10Retries.del(function (err, res) {
-        assert(err);
-        assert.equal(typeof payload, 'undefined');
-        assert.equal(err.executedRetries, 10)
+        assert(!err);
+        assert.equal(res.statusCode, 500);
+        assert.equal(res.retries, 10);
         done();
       });
     });
 
     it('should err 500 with 0 retries', function (done) {
       localErr0Retries.del(function (err, res) {
-        assert(err);
-        assert.equal(typeof payload, 'undefined');
-        assert.equal(err.executedRetries, 00)
+        assert(!err);
+        assert.equal(res.statusCode, 500);
+        assert.equal(res.retries, 0);
         done();
       });
     });

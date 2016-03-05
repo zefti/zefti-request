@@ -47,8 +47,9 @@ function queryRetry(requestProtocol, totalOptions, retries, executedRetries, cb)
         executedRetries++;
         queryRetry(requestProtocol, totalOptions, intRetries, executedRetries, cb);
       } else {
-        if (!err) err = {statusCode: res.statusCode, executedRetries:executedRetries};
-        return cb(err, null);
+        //if (!err) err = {statusCode: res.statusCode, executedRetries:executedRetries};
+        if (res) res.retries = executedRetries;
+        return cb(err, res);
       }
     }
   });
