@@ -6,7 +6,7 @@ function Request(options){
   if (!options) options = {};
   this.requestOptions = {};
   this.requestOptions.hostname = options.hostname;
-  this.requestOptions.port = options.port || 80;
+  //this.requestOptions.port = options.port || 80;
   this.requestOptions.path = options.path || '';
   this.requestProtocol = http.request;
   this.retries = options.retries || 0;
@@ -146,8 +146,8 @@ function parseNewOptions(base, extended){
 }
 
 function query(requestProtocol, options, cb){
-  //console.log('request options:::::::');
-  //console.log(options);
+  console.log('request options:::::::');
+  console.log(options);
   if (!options.hostname) return cb('hostname is required for query');
   var chunks = [];
   var req = requestProtocol(options, function(res) {
